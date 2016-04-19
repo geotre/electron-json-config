@@ -1,6 +1,6 @@
 {
   "name": "electron-json-config",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Simply set and get configuration from a json file for your Electron app",
   "main": "src/index.js",
   "keywords": [
@@ -21,19 +21,19 @@
     "url": "de-luca.io"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/de-luca/electron-json-config.git"
+    "type": "git",
+    "url": "https://github.com/de-luca/electron-json-config.git"
   },
   "scripts": {
     "test": "electron-mocha --recursive test -R progress && electron-mocha --renderer --recursive test -R progress"
   },
   "license": "BSD-2-Clause",
   "dependencies": {
-    "exists-file": "^1.0.0"
+    "exists-file": "^1.0.1"
   },
   "devDependencies": {
-    "electron-mocha": "^0.8.0",
-    "electron-prebuilt": "^0.35.6",
+    "electron-mocha": "^1.2.0",
+    "electron-prebuilt": "^0.37.6",
     "mochainon": "^1.0.0"
   },
   "files": [

@@ -17,6 +17,8 @@ console.log(config.get('foo')); // shows 'bar'
 
 ## API
 
+*All `key` can be a classic key (eg: `foo`) or a multiple level key with levels separated by `.` (eg: `foo.bar`)*
+
 ### `config.file()`
 Returns the name of the file the config is stored in.
 
@@ -29,8 +31,9 @@ Set a key with the specified value. If the key is already in use its value will 
 ### `config.get(key)`
 Returns the value associated with the key. If the key is not defined `undefined` is returned.
 
-### `config.keys()`
-Returns an array containing all keys in the config file.
+### `config.keys([key])`
+If `key` is provided, returns an array containing all keys if the `key` object.  
+If `key` is omitted, returns an array containing all keys in the config file.
 
 ### `config.all()`
 Returns an object with all the data currently saved.
