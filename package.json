@@ -29,12 +29,12 @@
   },
   "license": "BSD-2-Clause",
   "dependencies": {
-    "exists-file": "^1.0.1"
+    "exists-file": "^2.0.0"
   },
   "devDependencies": {
-    "electron-mocha": "^1.2.0",
-    "electron-prebuilt": "^0.37.6",
-    "mochainon": "^1.0.0"
+    "electron-mocha": "latest",
+    "electron-prebuilt": "latest",
+    "mochainon": "latest"
   },
   "files": [
     "src/index.js"

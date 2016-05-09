@@ -7,7 +7,7 @@ const config = require('../src/index.js');
 beforeEach(config.purge);
 
 it('ensure the file exists', function(done) {
-  var res = exists(config.file());
+  var res = exists.sync(config.file());
   m.chai.expect(res).to.be.a('boolean');
   m.chai.expect(res).to.equals(true);
   done();

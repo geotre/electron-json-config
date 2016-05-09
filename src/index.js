@@ -5,7 +5,7 @@ const exists = require('exists-file');
 const electron = require('electron');
 const file = (electron.app || electron.remote.app).getPath('userData')+'/config.json';
 
-if(!exists(file)) {
+if(!exists.sync(file)) {
   fs.writeFileSync(file, '{}');
 }
 var config = require(file);
