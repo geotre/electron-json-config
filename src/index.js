@@ -8,7 +8,7 @@ const file = (electron.app || electron.remote.app).getPath('userData')+'/config.
 if(!exists.sync(file)) {
   fs.writeFileSync(file, '{}');
 }
-var config = require(file);
+var config = JSON.parse(fs.readFileSync(file));
 
 const sync = function() {
   fs.writeFileSync(file, JSON.stringify(config));
