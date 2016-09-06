@@ -23,8 +23,9 @@ exports.set = function(key, value) {
   u.sync(file, config);
 };
 
-exports.get = function(key)  {
-  return u.search(config, key);
+exports.get = function(key, defaultValue)  {
+  const value = u.search(config, key);
+  return value === undefined ? defaultValue : value;
 };
 
 exports.keys = function(key) {

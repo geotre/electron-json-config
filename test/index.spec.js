@@ -109,6 +109,13 @@ it('.set() and .get() an object', function(done) {
   done();
 });
 
+it('.get() a default value', function(done) {
+  m.chai.expect(config.get('foo', 'bar')).to.equals('bar');
+  m.chai.expect(config.get('foo', undefined)).to.be.an('undefined');
+  m.chai.expect(config.get('foo')).to.be.an('undefined');
+  done();
+});
+
 it('deep .set() and deep .get() an object', function(done) {
   config.set('foo.bar', {bar: true, baz: 42});
   var res = config.get('foo.bar');
