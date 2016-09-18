@@ -28,8 +28,9 @@ Returns `true` if the key exists, `false` otherwise.
 ### `config.set(key, value)`
 Set a key with the specified value. If the key is already in use its value will be overwritten.
 
-### `config.get(key)`
-Returns the value associated with the key. If the key is not defined `undefined` is returned.
+### `config.get(key[, defaultValue])`
+Returns the value associated with the key. If the key is not defined `undefined` is returned.  
+You can specify a default value returned in case the key does not exists.
 
 ### `config.keys([key])`
 If `key` is provided, returns an array containing all keys if the `key` object.  
