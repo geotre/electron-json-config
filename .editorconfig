@@ -1,7 +1,7 @@
 # All recursive files starting from this file's dir
 root = true
-[*]
 
+[*]
 # Tab indentation style
 indent_style = space
 tab_width = 2
@@ -10,3 +10,6 @@ tab_width = 2
 trim_trailing_whitespace = true
 end_of_line = lf
 insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
