@@ -3,7 +3,11 @@
 const m = require('mochainon');
 const config = require('../src/index.js');
 
-beforeEach(config.purge);
+
+beforeEach(function() {
+  config.purge();
+});
+
 
 it('.set() and .get() a null', function(done) {
   config.set('foo', null);
@@ -239,5 +243,96 @@ it('.purge()', function(done) {
   m.chai.expect(res).to.be.an('array');
   m.chai.expect(res).to.have.length(0);
   m.chai.expect(res).to.deep.equals([]);
+  done();
+});
+
+
+it('.setBulk() multiple values in a single call and .get() them', function(done) {
+  config.setBulk({
+    a_boolean: true,
+    a_string: "foo bar",
+    an_int: 42,
+    an_array: ['foo', 'bar'],
+    "an.object": {
+      foo: 'bar',
+      theAnswer: 42,
+    }
+  });
+
+  let keys = config.keys();
+  m.chai.expect(keys).to.have.length(5);
+  m.chai.expect(keys).to.deep.equals([
+    'a_boolean',
+    'a_string',
+    'an_int',
+    'an_array',
+    'an'
+  ]);
+
+  let deepSettedObject = config.get('an');
+  m.chai.expect(deepSettedObject).to.deep.equals({
+    object: {
+      foo: 'bar',
+      theAnswer: 42,
+    }
+  });
+
+  let all = config.all();
+  m.chai.expect(all).to.deep.equals({
+    a_boolean: true,
+    a_string: "foo bar",
+    an_int: 42,
+    an_array: ['foo', 'bar'],
+    an: {
+      object: {
+        foo: 'bar',
+        theAnswer: 42,
+      }
+    }
+  });
+
+  done();
+});
+
+it('.deleteBulk multiple values in a single call', function(done) {
+  config.setBulk({
+    a_boolean: true,
+    a_string: "foo bar",
+    an_int: 42,
+    an_array: ['foo', 'bar'],
+    "an.object": {
+      foo: 'bar',
+      theAnswer: 42,
+    }
+  });
+
+  config.deleteBulk([
+    'a_boolean',
+    'an_int',
+    'an.object.theAnswer',
+  ]);
+
+  let keys = config.keys();
+  m.chai.expect(keys).to.have.length(3);
+  m.chai.expect(keys).to.deep.equals([
+    'a_string',
+    'an_array',
+    'an'
+  ]);
+
+  let all = config.all();
+  m.chai.expect(all).to.deep.equals({
+    a_string: "foo bar",
+    an_array: ['foo', 'bar'],
+    an: {
+      object: {
+        foo: 'bar'
+      }
+    }
+  });
+
+  let foo = config.get('an.object.foo');
+  m.chai.expect(foo).to.equals('bar');
+
   done();
 });

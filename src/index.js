@@ -8,7 +8,9 @@ const file = (electron.app || electron.remote.app).getPath('userData')+'/config.
 if(!u.exists(file)) {
   fs.writeFileSync(file, '{}');
 }
-var config = JSON.parse(fs.readFileSync(file));
+
+let config = JSON.parse(fs.readFileSync(file));
+
 
 exports.file = function() {
   return file;
@@ -20,6 +22,13 @@ exports.has = function(key) {
 
 exports.set = function(key, value) {
   u.set(config, key)(value);
+  u.sync(file, config);
+};
+
+exports.setBulk = function(items) {
+  for (let key in items) {
+    u.set(config, key)(items[key]);
+  }
   u.sync(file, config);
 };
 
@@ -38,6 +47,13 @@ exports.all = function() {
 
 exports.delete = function(key) {
   u.remove(config, key)();
+  u.sync(file, config);
+};
+
+exports.deleteBulk = function(keys) {
+  for (let key of keys) {
+    u.remove(config, key)();
+  }
   u.sync(file, config);
 };
 
