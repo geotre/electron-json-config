@@ -25,25 +25,8 @@ Returns the name of the file the config is stored in.
 **Returns:** [String]
 
 
-### `.has(key)`
-Checks if a key exists.
-
-| Parameters | Type     | Optional | Description                         |
-|:----------:|:--------:|:--------:|:-----------------------------------:|
-| key        | [String] |          | The name of a key to test existence |
-
-**Returns:** [Boolean]  
-**Example:**
-```js
-config.set('foo', 'bar');
-
-config.has('foo'); // true
-config.has('bar'); // false
-```
-
-
 ### `.set(key, value)`
-Sets a key with the specified value. If the key is already in use its value will be overwritten.
+Sets a key with the specified value. Overwrites the value, if the key already exists..
 
 | Parameters | Type     | Optional | Description                         |
 |:----------:|:--------:|:--------:|:-----------------------------------:|
@@ -78,8 +61,25 @@ config.setBulk({
 ```
 
 
+### `.has(key)`
+Checks if a key exists.
+
+| Parameters | Type     | Optional | Description                         |
+|:----------:|:--------:|:--------:|:-----------------------------------:|
+| key        | [String] |          | The name of a key to test existence |
+
+**Returns:** [Boolean]  
+**Example:**
+```js
+config.set('foo', 'bar');
+
+config.has('foo'); // true
+config.has('bar'); // false
+```
+
+
 ### `.get(key[, defaultValue])`
-Returns the value associated with the key. If the key is not defined `undefined` is returned.  
+Returns the value associated with the key, `undefined` otherwise.  
 You can specify a default value returned in case the key does not exists.
 
 | Parameters   | Type     | Optional | Description                                       |
@@ -141,7 +141,7 @@ config.all();
 
 
 ### `.delete(key)`
-Remove the key and its value from the config file.
+Removes the key and its value from the config file.
 
 | Parameters | Type     | Optional | Description                 |
 |:----------:|:--------:|:--------:|:---------------------------:|
@@ -156,7 +156,7 @@ config.delete('foo');     // Removes key 'bar' and its value
 
 
 ### `.deleteBulk(keys)`
-Remove the key and its value from the config file.
+Removes all the keys specified and theirs value from the config file.
 
 | Parameters | Type              | Optional | Description                |
 |:----------:|:-----------------:|:--------:|:--------------------------:|
@@ -176,7 +176,7 @@ config.deleteBulk(['foo', 'answer']);
 
 
 ### `.purge()`
-Remove all data from the config file.
+Removes all data from the config file.
 
 **Returns:** void  
 **Example:**
