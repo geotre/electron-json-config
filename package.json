@@ -30,7 +30,7 @@
   "license": "BSD-2-Clause",
   "devDependencies": {
     "electron-mocha": "latest",
-    "electron-prebuilt": "latest",
+    "electron": "latest",
     "mochainon": "latest"
   },
   "files": [
