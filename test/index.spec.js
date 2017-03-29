@@ -250,10 +250,10 @@ it('.purge()', function(done) {
 it('.setBulk() multiple values in a single call and .get() them', function(done) {
   config.setBulk({
     a_boolean: true,
-    a_string: "foo bar",
+    a_string: 'foo bar',
     an_int: 42,
     an_array: ['foo', 'bar'],
-    "an.object": {
+    'an.object': {
       foo: 'bar',
       theAnswer: 42,
     }
@@ -280,7 +280,7 @@ it('.setBulk() multiple values in a single call and .get() them', function(done)
   let all = config.all();
   m.chai.expect(all).to.deep.equals({
     a_boolean: true,
-    a_string: "foo bar",
+    a_string: 'foo bar',
     an_int: 42,
     an_array: ['foo', 'bar'],
     an: {
@@ -297,10 +297,10 @@ it('.setBulk() multiple values in a single call and .get() them', function(done)
 it('.deleteBulk multiple values in a single call', function(done) {
   config.setBulk({
     a_boolean: true,
-    a_string: "foo bar",
+    a_string: 'foo bar',
     an_int: 42,
     an_array: ['foo', 'bar'],
-    "an.object": {
+    'an.object': {
       foo: 'bar',
       theAnswer: 42,
     }
@@ -322,7 +322,7 @@ it('.deleteBulk multiple values in a single call', function(done) {
 
   let all = config.all();
   m.chai.expect(all).to.deep.equals({
-    a_string: "foo bar",
+    a_string: 'foo bar',
     an_array: ['foo', 'bar'],
     an: {
       object: {
