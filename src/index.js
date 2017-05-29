@@ -5,11 +5,16 @@ const fs = require('fs');
 const electron = require('electron');
 const file = (electron.app || electron.remote.app).getPath('userData')+'/config.json';
 
-if(!u.exists(file)) {
-  fs.writeFileSync(file, '{}');
-}
+let config = {};
 
-let config = JSON.parse(fs.readFileSync(file));
+
+(electron.app || electron.remote.app).on('ready', () => {
+  if(!u.exists(file)) {
+    fs.writeFileSync(file, '{}');
+  }
+
+  config = JSON.parse(fs.readFileSync(file));
+});
 
 
 exports.file = function() {
