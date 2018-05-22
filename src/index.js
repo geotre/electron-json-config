@@ -16,7 +16,7 @@ let readConfig = () => {
   config = JSON.parse(fs.readFileSync(file));
 };
 
-if ((electron.app && electron.app.isReady()) || (electron.remote.app && electron.remote.app.isReady())) {
+if ((electron.app && electron.app.isReady()) || (electron.remote && electron.remote.app && electron.remote.app.isReady())) {
   readConfig();
 } else {
   (electron.app || electron.remote.app).on('ready', () => {
