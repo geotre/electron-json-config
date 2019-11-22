@@ -1,0 +1,80 @@
+name: CI
+
+on:  
+  push:
+    branches:
+      - actions
+
+jobs:
+
+  lint:
+    name: Lint code
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Install npm deps
+        run: npm install
+      - name: Run tests
+        run: npm run lint
+
+  test-ubuntu:
+    name: Test on ${{ matrix.os }} and node ${{ matrix.node_version }} 
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: ['8', '10', '12']
+        os: [ubuntu-latest]
+    steps:
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Install npm deps
+        run: npm install
+      - name: Run tests
+        run: xvfb-run --server-args=$XVFB_ARGS npm run test
+        
+  test-macOS:
+    name: Test on ${{ matrix.os }} and node ${{ matrix.node_version }} 
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: ['8', '10', '12']
+        os: [macOS-latest]
+    steps:
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Install npm deps
+        run: npm install
+      - name: Run tests
+        run: npm run test
+
+  test-windows:
+    name: Test on ${{ matrix.os }} and node ${{ matrix.node_version }} 
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: ['8', '10', '12']
+        os: [windows-latest]
+    steps:
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Install npm deps
+        run: npm install
+      - name: Run tests
+        run: npm run test
