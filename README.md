@@ -1,5 +1,7 @@
 # electron-json-config
 
+![](https://github.com/de-luca/electron-json-config/workflows/CI/badge.svg)
+
 > Simply set and get configuration from a json file for your Electron app
 
 The config file (`config.json`) is located in the path returned by `app.getPath('userData')`.
