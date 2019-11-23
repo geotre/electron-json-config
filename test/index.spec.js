@@ -1,6 +1,6 @@
 'use strict';
 
-const m = require('mochainon');
+const { expect } = require('chai');
 const config = require('../src/index.js');
 
 
@@ -11,160 +11,161 @@ beforeEach(function() {
 
 it('.set() and .get() a null', function(done) {
   config.set('foo', null);
-  var res = config.get('foo');
-  m.chai.expect(res).to.be.a('null');
-  m.chai.expect(res).to.equals(null);
+  const res = config.get('foo');
+  expect(res).to.be.a('null');
+  expect(res).to.equals(null);
   done();
 });
 
 it('deep .set() and deep .get() a null', function(done) {
   config.set('foo.bar', null);
-  var res = config.get('foo.bar');
-  m.chai.expect(res).to.be.a('null');
-  m.chai.expect(res).to.equals(null);
+  const res = config.get('foo.bar');
+  expect(res).to.be.a('null');
+  expect(res).to.equals(null);
   done();
 });
 
 it('.set() and .get() an undefined', function(done) {
   config.set('foo', undefined);
-  var res = config.get('foo');
-  m.chai.expect(res).to.be.an('undefined');
-  m.chai.expect(res).to.equals(undefined);
+  const res = config.get('foo');
+  expect(res).to.be.an('undefined');
+  expect(res).to.equals(undefined);
   done();
 });
 
 it('deep .set() and deep .get() an undefined', function(done) {
   config.set('foo.bar', undefined);
-  var res = config.get('foo.bar');
-  m.chai.expect(res).to.be.an('undefined');
-  m.chai.expect(res).to.equals(undefined);
+  const res = config.get('foo.bar');
+  expect(res).to.be.an('undefined');
+  expect(res).to.equals(undefined);
   done();
 });
 
 it('.set() and .get() a boolean', function(done) {
   config.set('foo', true);
-  var res = config.get('foo');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(true);
+  const res = config.get('foo');
+  expect(res).to.be.a('boolean');
+  expect(res).to.equals(true);
   done();
 });
 
 it('deep .set() and deep .get() a boolean', function(done) {
   config.set('foo.bar', true);
-  var res = config.get('foo.bar');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(true);
+  const res = config.get('foo.bar');
+  expect(res).to.be.a('boolean');
+  expect(res).to.equals(true);
   done();
 });
 
 it('.set() and .get() a string', function(done) {
   config.set('foo', 'bar');
-  var res = config.get('foo');
-  m.chai.expect(res).to.be.a('string');
-  m.chai.expect(res).to.equals('bar');
+  const res = config.get('foo');
+  expect(res).to.be.a('string');
+  expect(res).to.equals('bar');
   done();
 });
 
 it('deep .set() and deep .get() a string', function(done) {
   config.set('foo.bar', 'baz');
-  var res = config.get('foo.bar');
-  m.chai.expect(res).to.be.a('string');
-  m.chai.expect(res).to.equals('baz');
+  const res = config.get('foo.bar');
+  expect(res).to.be.a('string');
+  expect(res).to.equals('baz');
   done();
 });
 
 it('.set() and .get() a number', function(done) {
   config.set('foo', 1);
-  var res = config.get('foo');
-  m.chai.expect(res).to.be.a('number');
-  m.chai.expect(res).to.equals(1);
+  const res = config.get('foo');
+  expect(res).to.be.a('number');
+  expect(res).to.equals(1);
   done();
 });
 
 it('deep .set() and deep .get() a number', function(done) {
   config.set('foo.bar', 1);
-  var res = config.get('foo.bar');
-  m.chai.expect(res).to.be.a('number');
-  m.chai.expect(res).to.equals(1);
+  const res = config.get('foo.bar');
+  expect(res).to.be.a('number');
+  expect(res).to.equals(1);
   done();
 });
 
 it('.set() and .get() an array', function(done) {
   config.set('foo', ['bar', 'baz']);
-  var res = config.get('foo');
-  m.chai.expect(res).to.be.an('array');
-  m.chai.expect(res).to.deep.equals(['bar', 'baz']);
+  const res = config.get('foo');
+  expect(res).to.be.an('array');
+  expect(res).to.deep.equals(['bar', 'baz']);
   done();
 });
 
 it('deep .set() and deep .get() an array', function(done) {
   config.set('foo.bar', ['bar', 'baz']);
-  var res = config.get('foo.bar');
-  m.chai.expect(res).to.be.an('array');
-  m.chai.expect(res).to.deep.equals(['bar', 'baz']);
+  const res = config.get('foo.bar');
+  expect(res).to.be.an('array');
+  expect(res).to.deep.equals(['bar', 'baz']);
   done();
 });
 
 it('.set() and .get() an object', function(done) {
   config.set('foo', {bar: true, baz: 42});
-  var res = config.get('foo');
-  m.chai.expect(res).to.be.an('object');
-  m.chai.expect(res).to.deep.equals({bar: true, baz: 42});
+  const res = config.get('foo');
+  expect(res).to.be.an('object');
+  expect(res).to.deep.equals({bar: true, baz: 42});
   done();
 });
 
 it('.get() a default value', function(done) {
-  m.chai.expect(config.get('foo', 'bar')).to.equals('bar');
-  m.chai.expect(config.get('foo', undefined)).to.be.an('undefined');
-  m.chai.expect(config.get('foo')).to.be.an('undefined');
+  expect(config.get('foo', 'bar')).to.equals('bar');
+  expect(config.get('foo', undefined)).to.be.an('undefined');
+  expect(config.get('foo')).to.be.an('undefined');
   done();
 });
 
 it('deep .set() and deep .get() an object', function(done) {
   config.set('foo.bar', {bar: true, baz: 42});
-  var res = config.get('foo.bar');
-  m.chai.expect(res).to.be.an('object');
-  m.chai.expect(res).to.deep.equals({bar: true, baz: 42});
+  const res = config.get('foo.bar');
+  expect(res).to.be.an('object');
+  expect(res).to.deep.equals({bar: true, baz: 42});
   done();
 });
 
-it('deep .set() and deep .get() an object', function(done) {
-  //config.set('foo.bar', {bar: true, baz: 42});
-  var res = config.get('foo.bar.baz');
-  m.chai.expect(res).to.be.an('undefined');
-  m.chai.expect(res).to.deep.equals(undefined);
+it('deep .get() an undefined', function(done) {
+  const res = config.get('foo.bar.baz');
+  expect(res).to.be.an('undefined');
+  expect(res).to.deep.equals(undefined);
   done();
 });
 
 it('very deep .set() and very deep .get() an object', function(done) {
   config.set('foo.bar.baz.very.deep', {itsdeep: true});
   var res = config.get('foo.bar.baz.very.deep');
-  m.chai.expect(res).to.be.an('object');
-  m.chai.expect(res).to.deep.equals({itsdeep: true});
+  expect(res).to.be.an('object');
+  expect(res).to.deep.equals({itsdeep: true});
   done();
 });
 
 it('.has()', function(done) {
-  var res;
   config.set('foo', 'bar');
-  res = config.has('foo');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(true);
-  res = config.has('baz');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(false);
+  
+  const resFoo = config.has('foo');
+  expect(resFoo).to.be.a('boolean');
+  expect(resFoo).to.equals(true);
+
+  const resBaz = config.has('baz');
+  expect(resBaz).to.be.a('boolean');
+  expect(resBaz).to.equals(false);
   done();
 });
 
 it('deep .has()', function(done) {
-  var res;
   config.set('foo.bar', 'baz');
-  res = config.has('foo.bar');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(true);
-  res = config.has('foo.bar.baz');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(false);
+  
+  const resFooBar = config.has('foo.bar');
+  expect(resFooBar).to.be.a('boolean');
+  expect(resFooBar).to.equals(true);
+
+  const resFooBarBaz = config.has('foo.bar.baz');
+  expect(resFooBarBaz).to.be.a('boolean');
+  expect(resFooBarBaz).to.equals(false);
   done();
 });
 
@@ -172,20 +173,22 @@ it('gets .keys() from top level', function(done) {
   config.set('foo', undefined);
   config.set('bar', undefined);
   config.set('baz', undefined);
-  var res = config.keys();
-  m.chai.expect(res).to.be.an('array');
-  m.chai.expect(res).to.have.length(3);
-  m.chai.expect(res).to.deep.equals(['foo', 'bar', 'baz']);
+
+  const res = config.keys();
+  expect(res).to.be.an('array');
+  expect(res).to.have.length(3);
+  expect(res).to.deep.equals(['foo', 'bar', 'baz']);
   done();
 });
 
 it('gets .keys() from a sub level', function(done) {
   config.set('foo.bar', undefined);
   config.set('foo.baz', undefined);
-  var res = config.keys('foo');
-  m.chai.expect(res).to.be.an('array');
-  m.chai.expect(res).to.have.length(2);
-  m.chai.expect(res).to.deep.equals(['bar', 'baz']);
+  
+  const res = config.keys('foo');
+  expect(res).to.be.an('array');
+  expect(res).to.have.length(2);
+  expect(res).to.deep.equals(['bar', 'baz']);
   done();
 });
 
@@ -193,56 +196,57 @@ it('gets .all()', function(done) {
   config.set('foo', 1);
   config.set('bar', 2);
   config.set('baz', 3);
-  var res = config.all();
-  m.chai.expect(res).to.be.an('object');
-  m.chai.expect(res).to.deep.equals({
+  
+  const res = config.all();
+  expect(res).to.be.an('object');
+  expect(res).to.deep.equals({
     foo: 1,
     bar: 2,
-    baz: 3
+    baz: 3,
   });
   done();
 });
 
 it('.delete()', function(done) {
-  var res;
   config.set('foo', true);
-  res = config.get('foo');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(true);
+  const resSet = config.get('foo');
+  expect(resSet).to.be.a('boolean');
+  expect(resSet).to.equals(true);
+  
   config.delete('foo');
-  res = config.get('foo');
-  m.chai.expect(res).to.be.an('undefined');
-  m.chai.expect(res).to.equals(undefined);
+  const resDel = config.get('foo');
+  expect(resDel).to.be.an('undefined');
+  expect(resDel).to.equals(undefined);
   done();
 });
 
 it('deep .delete()', function(done) {
-  var res;
   config.set('foo.bar', true);
-  res = config.get('foo.bar');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(true);
+  const resSet = config.get('foo.bar');
+  expect(resSet).to.be.a('boolean');
+  expect(resSet).to.equals(true);
+
   config.delete('foo.bar');
-  res = config.get('foo.bar');
-  m.chai.expect(res).to.be.an('undefined');
-  m.chai.expect(res).to.equals(undefined);
+  const resDel = config.get('foo.bar');
+  expect(resDel).to.be.an('undefined');
+  expect(resDel).to.equals(undefined);
   done();
 });
 
 it('.purge()', function(done) {
-  var res;
   config.set('foo', true);
   config.set('bar', true);
   config.set('baz', true);
-  res = config.keys();
-  m.chai.expect(res).to.be.an('array');
-  m.chai.expect(res).to.have.length(3);
-  m.chai.expect(res).to.deep.equals(['foo', 'bar', 'baz']);
+  const resSet = config.keys();
+  expect(resSet).to.be.an('array');
+  expect(resSet).to.have.length(3);
+  expect(resSet).to.deep.equals(['foo', 'bar', 'baz']);
+
   config.purge();
-  res = config.keys();
-  m.chai.expect(res).to.be.an('array');
-  m.chai.expect(res).to.have.length(0);
-  m.chai.expect(res).to.deep.equals([]);
+  const resKeys = config.keys();
+  expect(resKeys).to.be.an('array');
+  expect(resKeys).to.have.length(0);
+  expect(resKeys).to.deep.equals([]);
   done();
 });
 
@@ -256,29 +260,29 @@ it('.setBulk() multiple values in a single call and .get() them', function(done)
     'an.object': {
       foo: 'bar',
       theAnswer: 42,
-    }
+    },
   });
 
-  let keys = config.keys();
-  m.chai.expect(keys).to.have.length(5);
-  m.chai.expect(keys).to.deep.equals([
+  const keys = config.keys();
+  expect(keys).to.have.length(5);
+  expect(keys).to.deep.equals([
     'a_boolean',
     'a_string',
     'an_int',
     'an_array',
-    'an'
+    'an',
   ]);
 
-  let deepSettedObject = config.get('an');
-  m.chai.expect(deepSettedObject).to.deep.equals({
+  const deepSettedObject = config.get('an');
+  expect(deepSettedObject).to.deep.equals({
     object: {
       foo: 'bar',
       theAnswer: 42,
-    }
+    },
   });
 
-  let all = config.all();
-  m.chai.expect(all).to.deep.equals({
+  const all = config.all();
+  expect(all).to.deep.equals({
     a_boolean: true,
     a_string: 'foo bar',
     an_int: 42,
@@ -287,8 +291,8 @@ it('.setBulk() multiple values in a single call and .get() them', function(done)
       object: {
         foo: 'bar',
         theAnswer: 42,
-      }
-    }
+      },
+    },
   });
 
   done();
@@ -303,7 +307,7 @@ it('.deleteBulk multiple values in a single call', function(done) {
     'an.object': {
       foo: 'bar',
       theAnswer: 42,
-    }
+    },
   });
 
   config.deleteBulk([
@@ -312,16 +316,16 @@ it('.deleteBulk multiple values in a single call', function(done) {
     'an.object.theAnswer',
   ]);
 
-  let keys = config.keys();
-  m.chai.expect(keys).to.have.length(3);
-  m.chai.expect(keys).to.deep.equals([
+  const keys = config.keys();
+  expect(keys).to.have.length(3);
+  expect(keys).to.deep.equals([
     'a_string',
     'an_array',
-    'an'
+    'an',
   ]);
 
-  let all = config.all();
-  m.chai.expect(all).to.deep.equals({
+  const all = config.all();
+  expect(all).to.deep.equals({
     a_string: 'foo bar',
     an_array: ['foo', 'bar'],
     an: {
@@ -331,8 +335,8 @@ it('.deleteBulk multiple values in a single call', function(done) {
     }
   });
 
-  let foo = config.get('an.object.foo');
-  m.chai.expect(foo).to.equals('bar');
+  const foo = config.get('an.object.foo');
+  expect(foo).to.equals('bar');
 
   done();
 });

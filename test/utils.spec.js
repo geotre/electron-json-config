@@ -1,77 +1,72 @@
 'use strict';
 
-const m = require('mochainon');
+const { expect } = require('chai');
 const u = require('../src/utils.js');
 const fs = require('fs');
+const path = require('path');
 const electron = require('electron');
-const path = (electron.app || electron.remote.app).getPath('userData');
+const userDataPath = (electron.app || electron.remote.app).getPath('userData');
 
 it('returns false on exists() when file does not exists', function(done) {
-  var res = u.exists(path + '/aFileNotHere.txt');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(false);
+  const res = u.exists(path.join(userDataPath, 'aFileNotHere.txt'));
+  expect(res).to.be.a('boolean');
+  expect(res).to.equals(false);
   done();
 });
 
 it('returns true on exists() when file does exists', function(done) {
-  fs.writeFileSync(path + '/aFileThatExists.txt', '');
-  var res = u.exists(path + '/aFileThatExists.txt');
-  m.chai.expect(res).to.be.a('boolean');
-  m.chai.expect(res).to.equals(true);
+  const testPath = path.join(userDataPath, 'aFileThatExists.txt');
+  fs.writeFileSync(testPath, '');
+  const res = u.exists(testPath);
+  expect(res).to.be.a('boolean');
+  expect(res).to.equals(true);
   done();
 });
 
 it('syncs data in file', function(done) {
-  var item = {
-    text: 'sometext'
-  };
-  u.sync(path + '/aFile.json', item);
-  var res = fs.readFileSync(path + '/aFile.json').toString();
-  m.chai.expect(res).to.be.a('string');
-  m.chai.expect(res).to.equals('{"text":"sometext"}');
+  const item = { text: 'sometext' };
+  const testPath = path.join(userDataPath, 'aFile.json');
+  u.sync(testPath, item);
+  const res = fs.readFileSync(testPath).toString();
+  expect(res).to.be.a('string');
+  expect(res).to.equals('{"text":"sometext"}');
   done();
 });
 
 it('returns a deep setted item', function(done) {
-  var item = {
-    foo: {
-      bar: 'baz'
-    }
+  const item = {
+    foo: { bar: 'baz' },
   };
-  var res = u.search(item, 'foo.bar');
-  m.chai.expect(res).to.be.a('string');
-  m.chai.expect(res).to.equals('baz');
+  const res = u.search(item, 'foo.bar');
+  expect(res).to.be.a('string');
+  expect(res).to.equals('baz');
   done();
 });
 
 it('returns undefined for a non existing item', function(done) {
-  var item = {
-    foo: {
-      bar: 'baz'
-    }
+  const item = {
+    foo: { bar: 'baz' },
   };
-  var res = u.search(item, 'foo.baz');
-  m.chai.expect(res).to.be.an('undefined');
-  m.chai.expect(res).to.equals(undefined);
+  const res = u.search(item, 'foo.baz');
+  expect(res).to.be.an('undefined');
+  expect(res).to.equals(undefined);
   done();
 });
 
 it('deep sets a string', function(done) {
-  var item = {};
+  const item = {};
   u.set(item, 'foo.bar')('baz');
-  m.chai.expect(item.foo.bar).to.be.a('string');
-  m.chai.expect(item.foo.bar).to.equals('baz');
+  expect(item.foo.bar).to.be.a('string');
+  expect(item.foo.bar).to.equals('baz');
   done();
 });
 
 it('removes a deep setted item', function(done) {
-  var item = {
-    foo: {
-      bar: 'baz'
-    }
+  const item = {
+    foo: { bar: 'baz' },
   };
   u.remove(item, 'foo.bar')();
-  m.chai.expect(item.foo.bar).to.be.an('undefined');
-  m.chai.expect(item.foo.bar).to.equals(undefined);
+  expect(item.foo.bar).to.be.an('undefined');
+  expect(item.foo.bar).to.equals(undefined);
   done();
 });

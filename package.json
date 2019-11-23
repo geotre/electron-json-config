@@ -26,14 +26,14 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "electron-mocha --recursive test -R progress && electron-mocha --renderer --recursive test -R progress"
+    "test": "electron-mocha --recursive test && electron-mocha --renderer --recursive test"
   },
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "electron": "latest",
-    "electron-mocha": "latest",
-    "eslint": "^3.18.0",
-    "mochainon": "latest"
+    "chai": "^4.2.0",
+    "electron": "^7.1.2",
+    "electron-mocha": "^8.1.2",
+    "eslint": "^6.7.0"
   },
   "files": [
     "src/"
