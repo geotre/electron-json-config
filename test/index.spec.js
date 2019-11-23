@@ -137,7 +137,7 @@ it('deep .get() an undefined', function(done) {
 
 it('very deep .set() and very deep .get() an object', function(done) {
   config.set('foo.bar.baz.very.deep', {itsdeep: true});
-  var res = config.get('foo.bar.baz.very.deep');
+  const res = config.get('foo.bar.baz.very.deep');
   expect(res).to.be.an('object');
   expect(res).to.deep.equals({itsdeep: true});
   done();
@@ -330,9 +330,9 @@ it('.deleteBulk multiple values in a single call', function(done) {
     an_array: ['foo', 'bar'],
     an: {
       object: {
-        foo: 'bar'
-      }
-    }
+        foo: 'bar',
+      },
+    },
   });
 
   const foo = config.get('an.object.foo');
