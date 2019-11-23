@@ -2,8 +2,11 @@ name: CI
 
 on:  
   push:
-    branches:
-      - actions
+    branches: 
+      - master
+  pull_request:
+  schedule:
+    - cron: "0 9 * * *"
 
 jobs:
 
@@ -25,6 +28,7 @@ jobs:
   test-ubuntu:
     name: Test on ${{ matrix.os }} and node ${{ matrix.node_version }} 
     runs-on: ${{ matrix.os }}
+    needs: lint
     strategy:
       matrix:
         node_version: ['8', '10', '12']
@@ -44,6 +48,7 @@ jobs:
   test-macOS:
     name: Test on ${{ matrix.os }} and node ${{ matrix.node_version }} 
     runs-on: ${{ matrix.os }}
+    needs: lint
     strategy:
       matrix:
         node_version: ['8', '10', '12']
@@ -63,6 +68,7 @@ jobs:
   test-windows:
     name: Test on ${{ matrix.os }} and node ${{ matrix.node_version }} 
     runs-on: ${{ matrix.os }}
+    needs: lint
     strategy:
       matrix:
         node_version: ['8', '10', '12']
