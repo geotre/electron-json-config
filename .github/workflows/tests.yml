@@ -20,9 +20,16 @@ jobs:
           node-version: 10.x
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Get npm cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install npm deps
         run: npm install
-      - name: Run tests
+      - name: Run lint
         run: npm run lint
 
   test-ubuntu:
@@ -40,6 +47,13 @@ jobs:
           node-version: ${{ matrix.node_version }}
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Get npm cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install npm deps
         run: npm install
       - name: Run tests
@@ -60,6 +74,13 @@ jobs:
           node-version: ${{ matrix.node_version }}
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Get npm cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install npm deps
         run: npm install
       - name: Run tests
@@ -80,6 +101,13 @@ jobs:
           node-version: ${{ matrix.node_version }}
       - name: Checkout code
         uses: actions/checkout@v1
+      - name: Get npm cache
+        uses: actions/cache@v1
+        with:
+          path: ~\AppData\Roaming\npm-cache
+          key: ${{ runner.os }}-node-${{ hashFiles('**\package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install npm deps
         run: npm install
       - name: Run tests
