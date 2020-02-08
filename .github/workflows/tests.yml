@@ -57,7 +57,7 @@ jobs:
       - name: Install npm deps
         run: npm install
       - name: Run tests
-        run: xvfb-run --server-args=$XVFB_ARGS npm run test
+        run: xvfb-run --server-args="-screen 0 1024x768x24" npm run test
         
   test-macOS:
     name: Test on ${{ matrix.os }} and node ${{ matrix.node_version }} 
