@@ -33,7 +33,7 @@
     "chai": "^4.2.0",
     "electron": "^8.0.0",
     "electron-mocha": "^8.1.2",
-    "eslint": "^6.7.0"
+    "eslint": "^7.0.0"
   },
   "files": [
     "src/"
