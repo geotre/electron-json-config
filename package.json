@@ -31,7 +31,7 @@
   "license": "BSD-2-Clause",
   "devDependencies": {
     "chai": "^4.2.0",
-    "electron": "^8.0.0",
+    "electron": "^9.0.0",
     "electron-mocha": "^8.1.2",
     "eslint": "^7.0.0"
   },
