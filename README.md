@@ -1,8 +1,8 @@
 # electron-json-config
 
-![npm](https://img.shields.io/npm/v/electron-json-config)
+[![npm](https://img.shields.io/npm/v/electron-json-config)](https://www.npmjs.com/package/electron-json-config)
 [![codecov](https://codecov.io/gh/de-luca/electron-json-config/branch/master/graph/badge.svg)](https://codecov.io/gh/de-luca/electron-json-config)
-![](https://github.com/de-luca/electron-json-config/workflows/CI/badge.svg)
+[![](https://github.com/de-luca/electron-json-config/workflows/CI/badge.svg)](https://github.com/de-luca/electron-json-config/actions)
 
 > Simply set and get configuration from a json file for your Electron app
 
@@ -17,12 +17,12 @@ This package can be used from **[main and renderer process](https://www.electron
 
 ### NPM
 ```
-npm install --save electron-json-config
+npm install --save electron-json-config@beta
 ```
 
 ### yarn
 ```
-yarn add electron-json-config
+yarn add electron-json-config@beta
 ```
 
 
