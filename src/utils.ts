@@ -14,7 +14,10 @@ export function read(file: string): Storable {
     const data = readFileSync(file) as Buffer;
     return JSON.parse(data.toString());
   } catch(err) {
-    if (err.code === 'ENOENT') {
+    if (
+      err instanceof Error &&
+      (err as NodeJS.ErrnoException).code === 'ENOENT'
+    ) {
       writeFileSync(file, '{}');
       return {};
     }
@@ -44,8 +47,8 @@ export function search<T>(data: Storable, key: Key): T | undefined {
 }
 
 export function set<T>(
-  data: Storable, 
-  key: Key, 
+  data: Storable,
+  key: Key,
   value: Storable | T,
 ): void {
   const path = pathiffy(key);
@@ -57,7 +60,7 @@ export function set<T>(
     }
     data = data[path[i]];
   }
-  
+
   data[path[i]] = value;
 }
 
@@ -71,6 +74,6 @@ export function remove(data: Storable, key: Key): void {
     }
     data = data[path[i]];
   }
-  
+
   delete data[path[i]];
 }
