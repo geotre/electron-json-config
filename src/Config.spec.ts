@@ -1,19 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { app } from 'electron';
 import { expect } from 'chai';
 import { join } from 'path';
-import { app, remote } from 'electron';
 import { unlinkSync, readFileSync } from 'fs';
 import Config from './Config';
 
-
-const tmpFile = join((app || remote.app).getPath("temp"), 'test.json');
+const tmpFile = join(app.getPath('temp'), 'test.json');
 
 afterEach(() => {
     try {
         unlinkSync(tmpFile);
     } catch (e) { }
 })
-
 
 describe('Config.has', () => {
     const config = new Config(

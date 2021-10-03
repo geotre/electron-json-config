@@ -10,7 +10,7 @@
 **For 1.x.x code and documentation please refer to [the 1.x.x tree](https://github.com/de-luca/electron-json-config/tree/1.x.x).**  
 **See [UPGRADE.md](./UPGRADE.md) for an upgrade guide.**
 
-This package can be used from **[main and renderer process](https://www.electronjs.org/docs/tutorial/quick-start#main-and-renderer-processes)**.
+This package can only be used from the **[main process](https://www.electronjs.org/docs/tutorial/quick-start#main-and-renderer-processes)**.
 
 
 ## Installation

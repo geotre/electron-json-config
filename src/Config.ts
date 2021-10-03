@@ -3,8 +3,8 @@ import * as util from './utils';
 
 
 function sync(
-    target: Config,
-    propertyKey: string,
+    _target: Config,
+    _propertyKey: string,
     descriptor: PropertyDescriptor,
 ): PropertyDescriptor {
     const originalMethod = descriptor.value;

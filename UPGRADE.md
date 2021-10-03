@@ -1,5 +1,10 @@
 # Upgrade from `1.x.x` to `2.x.x`
 
+## Main process only
+
+**Renderer process support has been dropped!**
+
+
 ## New export/structure
 
 **`1.x.x`**:

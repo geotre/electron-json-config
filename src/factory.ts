@@ -1,10 +1,9 @@
-import { app, remote } from 'electron';
+import { app } from 'electron';
 import { join } from 'path';
 import { read } from './utils';
 import Conf from './Config';
 
-/* istanbul ignore next */
-const defaultFile = join((app || remote.app).getPath('userData'), 'config.json');
+const defaultFile = join(app.getPath('userData'), 'config.json');
 const defaultKey = 'userData';
 
 const instances: Map<string, Conf> = new Map();
@@ -21,6 +20,6 @@ export function factory(file?: string, key?: string): Conf {
             new Conf(actualFile, read(actualFile)),
         );
     }
-    
+
     return instances.get(actualKey) as Conf;
 }

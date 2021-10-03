@@ -1,6 +1,6 @@
+import { app } from 'electron';
 import { expect } from 'chai';
 import { join } from 'path';
-import { app, remote } from 'electron';
 import {
     mkdirSync,
     rmdirSync,
@@ -11,14 +11,13 @@ import {
 import * as utils from './utils';
 import Storable from './Storable';
 
-
-const tmpDir = (app || remote.app).getPath("temp");
+const tmpDir = app.getPath('temp');
 
 function unlinkTmpFiles() {
     try {
         unlinkSync(join(tmpDir, 'iexist'));
     } catch(e) {}
-    
+
     try {
         unlinkSync(join(tmpDir, 'iDONTexist'));
     } catch (e) {}
@@ -27,7 +26,6 @@ function unlinkTmpFiles() {
         rmdirSync(join(tmpDir, 'IamAdir'));
     } catch (e) {}
 }
-
 
 describe('utils.sync', () => {
     it('updates the file with given object', () => {
@@ -38,7 +36,7 @@ describe('utils.sync', () => {
         };
 
         utils.sync(path, data);
-        
+
         const content = readFileSync(path).toString();
         expect(content).to.equals(JSON.stringify(data));
     });
