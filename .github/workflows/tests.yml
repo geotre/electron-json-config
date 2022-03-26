@@ -1,8 +1,8 @@
 name: CI
 
-on:  
+on:
   push:
-    branches: 
+    branches:
       - master
   pull_request:
 
@@ -12,17 +12,12 @@ jobs:
     name: Lint code
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 15
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm install
+          node-version: 16
+          cache: npm
+      - run: npm ci
       - run: npm run lint
 
   test-ubuntu:
@@ -30,36 +25,26 @@ jobs:
     needs: lint
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 15
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm install
+          node-version: 16
+          cache: npm
+      - run: npm ci
       - run: xvfb-run --server-args="-screen 0 1024x768x24" npm run test:coverage
       - uses: codecov/codecov-action@v1
-        
+
   test-macos:
     name: macOS test
     needs: lint
     runs-on: [macOS-latest]
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 15
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm install
+          node-version: 16
+          cache: npm
+      - run: npm ci
       - run: npm run test
 
   test-windows:
@@ -67,15 +52,10 @@ jobs:
     needs: lint
     runs-on: [windows-latest]
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 15
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm install
+          node-version: 16
+          cache: npm
+      - run: npm ci
       - run: npm run test
