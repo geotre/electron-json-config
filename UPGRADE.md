@@ -84,7 +84,7 @@ const defaultConf = factory();
 const testConf = factory('/data/test.json');
 ```
 
-## Key versality
+## Key versatility
 
 *See [Key section of README](./README.md#key).*
 
@@ -97,7 +97,6 @@ Keys can now be:
   eg: `['foo', 'bar']`
 
 **2.x.x**:
-`require` syntax
 ```js
 // A simple key => ['foo']
 config.get('foo');
