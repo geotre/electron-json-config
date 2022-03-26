@@ -19,13 +19,14 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - if: contains(github.ref, '-beta')
-        run: npm publish --access public --tag beta
+      - name: Create .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - if: contains(github.ref, '-beta')
+        run: npm publish --access public --tag beta
+
       - if: "!contains(github.ref, '-beta')"
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
